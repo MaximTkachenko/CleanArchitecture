@@ -1,8 +1,8 @@
 ﻿using CleanArchitecture.Core.Interfaces;
-using CleanArchitecture.Core.SharedKernel;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
+using CleanArchitecture.SharedKernel;
 
 namespace CleanArchitecture.Infrastructure.Data
 {

@@ -1,11 +1,11 @@
 ﻿using Autofac;
 using CleanArchitecture.Core.Interfaces;
-using CleanArchitecture.Core.SharedKernel;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CleanArchitecture.SharedKernel;
 
 namespace CleanArchitecture.Infrastructure.DomainEvents
 {

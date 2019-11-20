@@ -1,11 +1,11 @@
-﻿using CleanArchitecture.Core.Entities;
-using CleanArchitecture.Core.Events;
-using CleanArchitecture.Core.Services;
-using System;
+﻿using System;
 using System.Threading.Tasks;
+using CleanArchitecture.Core.Entities;
+using CleanArchitecture.Core.Events;
+using CleanArchitecture.Core.Handlers;
 using Xunit;
 
-namespace CleanArchitecture.UnitTests.Core.Entities
+namespace CleanArchitecture.UnitTests.Core.Handlers
 {
     public class ItemCompletedEmailNotificationHandlerHandle
     {

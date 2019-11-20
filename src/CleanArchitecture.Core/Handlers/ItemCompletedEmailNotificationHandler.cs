@@ -3,7 +3,7 @@ using Ardalis.GuardClauses;
 using CleanArchitecture.Core.Events;
 using CleanArchitecture.Core.Interfaces;
 
-namespace CleanArchitecture.Core.Services
+namespace CleanArchitecture.Core.Handlers
 {
     public class ItemCompletedEmailNotificationHandler : IHandle<ToDoItemCompletedEvent>
     {

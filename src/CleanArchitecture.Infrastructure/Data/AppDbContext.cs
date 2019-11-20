@@ -4,9 +4,9 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using CleanArchitecture.Core.Entities;
-using CleanArchitecture.Core.SharedKernel;
 using Ardalis.EFCore.Extensions;
 using System.Reflection;
+using CleanArchitecture.SharedKernel;
 using JetBrains.Annotations;
 
 namespace CleanArchitecture.Infrastructure.Data
