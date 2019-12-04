@@ -1,6 +1,5 @@
 ﻿using CleanArchitecture.Core.Entities;
 using CleanArchitecture.Core.Interfaces;
-using System.Linq;
 
 namespace CleanArchitecture.Core
 {
@@ -8,7 +7,7 @@ namespace CleanArchitecture.Core
     {
         public static int PopulateDatabase(IRepository todoRepository)
         {
-            if (todoRepository.List<ToDoItem>().Count() >= 5) return 0;
+            if (todoRepository.Count(new ToDoItemAllSpecification()) >= 5) return 0;
 
             todoRepository.Add(new ToDoItem
             {
@@ -26,7 +25,7 @@ namespace CleanArchitecture.Core
                 Description = "Make sure all the tests run and review what they are doing."
             });
 
-            return todoRepository.List<ToDoItem>().Count;
+            return todoRepository.Count(new ToDoItemAllSpecification());
         }
     }
 }

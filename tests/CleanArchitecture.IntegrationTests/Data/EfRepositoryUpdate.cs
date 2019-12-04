@@ -23,8 +23,7 @@ namespace CleanArchitecture.IntegrationTests.Data
             _dbContext.Entry(item).State = EntityState.Detached;
 
             // fetch the item and update its title
-            var newItem = repository.List<ToDoItem>()
-                .FirstOrDefault(i => i.Title == initialTitle);
+            var newItem = repository.FirstOrDefault(new ToDoItemByTitleSpecification(initialTitle));
             Assert.NotNull(newItem);
             Assert.NotSame(item, newItem);
             var newTitle = Guid.NewGuid().ToString();
@@ -32,8 +31,7 @@ namespace CleanArchitecture.IntegrationTests.Data
 
             // Update the item
             repository.Update(newItem);
-            var updatedItem = repository.List<ToDoItem>()
-                .FirstOrDefault(i => i.Title == newTitle);
+            var updatedItem = repository.FirstOrDefault(new ToDoItemByTitleSpecification(initialTitle));
 
             Assert.NotNull(updatedItem);
             Assert.NotEqual(item.Title, updatedItem.Title);

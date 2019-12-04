@@ -16,7 +16,7 @@ namespace CleanArchitecture.IntegrationTests.Data
 
             repository.Add(item);
 
-            var newItem = repository.List<ToDoItem>().FirstOrDefault();
+            var newItem = repository.FirstOrDefault(new ToDoItemAllSpecification());
 
             Assert.Equal(item, newItem);
             Assert.True(newItem?.Id > 0);

@@ -1,7 +1,6 @@
 ﻿using CleanArchitecture.Core.Entities;
 using CleanArchitecture.Core.Interfaces;
 using CleanArchitecture.Web.ApiModels;
-using CleanArchitecture.Web.Filters;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 
@@ -20,7 +19,7 @@ namespace CleanArchitecture.Web.Api
         [HttpGet]
         public IActionResult List()
         {
-            var items = _repository.List<ToDoItem>()
+            var items = _repository.List(new ToDoItemAllSpecification())
                             .Select(ToDoItemDTO.FromToDoItem);
             return Ok(items);
         }
@@ -29,7 +28,7 @@ namespace CleanArchitecture.Web.Api
         [HttpGet("{id:int}")]
         public IActionResult GetById(int id)
         {
-            var item = ToDoItemDTO.FromToDoItem(_repository.GetById<ToDoItem>(id));
+            var item = ToDoItemDTO.FromToDoItem(_repository.FirstOrDefault(new ToDoItemByIdSpecification(id)));
             return Ok(item);
         }
 
@@ -49,7 +48,7 @@ namespace CleanArchitecture.Web.Api
         [HttpPatch("{id:int}/complete")]
         public IActionResult Complete(int id)
         {
-            var toDoItem = _repository.GetById<ToDoItem>(id);
+            var toDoItem = _repository.FirstOrDefault(new ToDoItemByIdSpecification(id));
             toDoItem.MarkComplete();
             _repository.Update(toDoItem);
 

@@ -18,7 +18,7 @@ namespace CleanArchitecture.Web.Controllers
 
         public IActionResult Index()
         {
-            var items = _repository.List<ToDoItem>()
+            var items = _repository.List(new ToDoItemAllSpecification())
                             .Select(ToDoItemDTO.FromToDoItem);
             return View(items);
         }
