@@ -4,6 +4,7 @@ using CleanArchitecture.Core.Interfaces;
 using CleanArchitecture.Web.ApiModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace CleanArchitecture.Web.Controllers
 {
@@ -23,9 +24,9 @@ namespace CleanArchitecture.Web.Controllers
             return View(items);
         }
 
-        public IActionResult Populate()
+        public async Task<IActionResult> Populate()
         {
-            int recordsAdded = DatabasePopulator.PopulateDatabase(_repository);
+            int recordsAdded = await DatabasePopulator.PopulateDatabaseAsync(_repository);
             return Ok(recordsAdded);
         }
     }

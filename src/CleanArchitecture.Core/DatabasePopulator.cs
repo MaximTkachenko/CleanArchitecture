@@ -1,13 +1,14 @@
-﻿using CleanArchitecture.Core.Entities;
+﻿using System.Threading.Tasks;
+using CleanArchitecture.Core.Entities;
 using CleanArchitecture.Core.Interfaces;
 
 namespace CleanArchitecture.Core
 {
     public static class DatabasePopulator
     {
-        public static int PopulateDatabase(IRepository todoRepository)
+        public static async Task<int> PopulateDatabaseAsync(IRepository todoRepository)
         {
-            if (todoRepository.Count(ToDoItemSpecs.All()) >= 5) return 0;
+            if ((await todoRepository.CountAsync(ToDoItemSpecs.All())) >= 5) return 0;
 
             todoRepository.Add(new ToDoItem
             {
@@ -25,7 +26,7 @@ namespace CleanArchitecture.Core
                 Description = "Make sure all the tests run and review what they are doing."
             });
 
-            return todoRepository.Count(ToDoItemSpecs.All());
+            return await todoRepository.CountAsync(ToDoItemSpecs.All());
         }
     }
 }

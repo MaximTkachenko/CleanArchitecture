@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using CleanArchitecture.SharedKernel;
 
 namespace CleanArchitecture.Infrastructure.Data
@@ -29,19 +30,19 @@ namespace CleanArchitecture.Infrastructure.Data
             return query.AsEnumerable();
         }
 
-        public int Count<T>(ISpecification<T> spec) where T : BaseEntity
+        public Task<int> CountAsync<T>(ISpecification<T> spec) where T : BaseEntity
         {
-            return BuildQuery(spec).Count();
+            return BuildQuery(spec).CountAsync();
         }
 
-        public T FirstOrDefault<T>(ISpecification<T> spec) where T : BaseEntity
+        public Task<T> FirstOrDefaultAsync<T>(ISpecification<T> spec) where T : BaseEntity
         {
-            return BuildQuery(spec).FirstOrDefault();
+            return BuildQuery(spec).FirstOrDefaultAsync();
         }
 
-        public bool Any<T>(ISpecification<T> spec) where T : BaseEntity
+        public Task<bool> AnyAsync<T>(ISpecification<T> spec) where T : BaseEntity
         {
-            return BuildQuery(spec).Any();
+            return BuildQuery(spec).AnyAsync();
         }
 
         public T Add<T>(T entity) where T : BaseEntity

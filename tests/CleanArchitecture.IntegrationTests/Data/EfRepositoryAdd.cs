@@ -1,6 +1,6 @@
 ﻿using CleanArchitecture.Core.Entities;
 using CleanArchitecture.UnitTests;
-using System.Linq;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace CleanArchitecture.IntegrationTests.Data
@@ -8,7 +8,7 @@ namespace CleanArchitecture.IntegrationTests.Data
     public class EfRepositoryAdd : BaseEfRepoTestFixture
     {
         [Fact]
-        public void AddsItemAndSetsId()
+        public async Task AddsItemAndSetsId()
         {
             var repository = GetRepository();
             var item = new ToDoItemBuilder().Build();
@@ -16,7 +16,7 @@ namespace CleanArchitecture.IntegrationTests.Data
             repository.Add(item);
             _dbContext.SaveChanges();
 
-            var newItem = repository.FirstOrDefault(ToDoItemSpecs.All());
+            var newItem = await repository.FirstOrDefaultAsync(ToDoItemSpecs.All());
 
             Assert.Equal(item, newItem);
             Assert.True(newItem?.Id > 0);

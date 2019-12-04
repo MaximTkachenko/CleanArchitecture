@@ -1,4 +1,5 @@
-﻿using CleanArchitecture.Core;
+﻿using System.Threading.Tasks;
+using CleanArchitecture.Core;
 using CleanArchitecture.Core.Interfaces;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -15,9 +16,9 @@ namespace CleanArchitecture.Web.Pages.ToDoRazorPage
 
         public int RecordsAdded { get; set; }
 
-        public void OnGet()
+        public async Task OnGetAsync()
         {
-            RecordsAdded = DatabasePopulator.PopulateDatabase(_repository);
+            RecordsAdded = await DatabasePopulator.PopulateDatabaseAsync(_repository);
         }
     }
 }
