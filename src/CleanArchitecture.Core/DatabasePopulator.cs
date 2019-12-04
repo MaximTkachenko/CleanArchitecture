@@ -7,7 +7,7 @@ namespace CleanArchitecture.Core
     {
         public static int PopulateDatabase(IRepository todoRepository)
         {
-            if (todoRepository.Count(new ToDoItemAllSpecification()) >= 5) return 0;
+            if (todoRepository.Count(ToDoItemSpecs.All()) >= 5) return 0;
 
             todoRepository.Add(new ToDoItem
             {
@@ -25,7 +25,7 @@ namespace CleanArchitecture.Core
                 Description = "Make sure all the tests run and review what they are doing."
             });
 
-            return todoRepository.Count(new ToDoItemAllSpecification());
+            return todoRepository.Count(ToDoItemSpecs.All());
         }
     }
 }

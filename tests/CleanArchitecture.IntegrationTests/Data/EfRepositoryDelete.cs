@@ -20,7 +20,7 @@ namespace CleanArchitecture.IntegrationTests.Data
             repository.Delete(item);
 
             // verify it's no longer there
-            Assert.DoesNotContain(repository.List(new ToDoItemByTitleSpecification(initialTitle)),
+            Assert.DoesNotContain(repository.List(ToDoItemSpecs.ByTitle(initialTitle)),
                 i => i.Title == initialTitle);
         }
     }

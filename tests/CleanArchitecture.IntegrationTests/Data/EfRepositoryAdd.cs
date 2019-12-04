@@ -7,7 +7,6 @@ namespace CleanArchitecture.IntegrationTests.Data
 {
     public class EfRepositoryAdd : BaseEfRepoTestFixture
     {
-
         [Fact]
         public void AddsItemAndSetsId()
         {
@@ -15,8 +14,9 @@ namespace CleanArchitecture.IntegrationTests.Data
             var item = new ToDoItemBuilder().Build();
 
             repository.Add(item);
+            _dbContext.SaveChanges();
 
-            var newItem = repository.FirstOrDefault(new ToDoItemAllSpecification());
+            var newItem = repository.FirstOrDefault(ToDoItemSpecs.All());
 
             Assert.Equal(item, newItem);
             Assert.True(newItem?.Id > 0);
